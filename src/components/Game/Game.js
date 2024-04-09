@@ -69,7 +69,9 @@ const Game = ({
 
   //Handles button press effect while game is running
   const toggleLights = (row, col) => {
-    setGamerunning(true);
+    if (!gamerunning) {
+      setGamerunning(true);
+    }
     setCreateGame(false);
     let copy = [...game.map((r) => [...r])];
     if (Array.isArray(copy[row]) && copy[row][col] !== undefined) {

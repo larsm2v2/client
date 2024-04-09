@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useCallback } from "react";
+import React, { Fragment, useState } from "react";
 import './App.css';
 import './index.css'
 
@@ -9,15 +9,13 @@ import TitleMenu from './components/TitleMenu/TitleMenu';
 //Components//
 const App = () => {
   //Create array size x size with lights turned off
-  const createGrid = useCallback(
-    (size) =>
+  const createGrid = (size) =>
       new Array(size).fill().map((r) =>
         new Array(size)
           .fill()
           .map((c) => false)
-      ),
-    [],
-  );
+      );
+
   // Use a single state object for game state management
   const initialState = {
     size: 5,
@@ -49,49 +47,13 @@ const App = () => {
       <div className="AppFormat">
         <Game
         createGrid={createGrid}
-        size={gameState.size}
-        setSize={(newSize) => updateGameState({ size: newSize })}
-        game={gameState.game}
-        setGame={(newGame) => updateGameState({ game: newGame })}
-        gamerunning={gameState.gamerunning}
-        setGamerunning={(isRunning) => updateGameState({ gamerunning: isRunning })}
-        playGame={gameState.playGame}
-        setPlayGame={(isPlayGame) => updateGameState({ playGame: isPlayGame })}
-        createGame={gameState.createGame}
-        setCreateGame={(isCreateGame) => updateGameState({ createGame: isCreateGame })}
-        autoGame={gameState.autoGame}
-        setAutoGame={(isAutoGame) => updateGameState({ autoGame: isAutoGame })}
-        success={gameState.success}
-        setSuccess={(isSuccess) => updateGameState({ success: isSuccess })}
-        currentGroup={gameState.currentGroup}
-        setCurrentGroup={(newGroup) => updateGameState({ currentGroup: newGroup })}
-        currentLevel={gameState.currentLevel}
-        setCurrentLevel={(newLevel) => updateGameState({ currentLevel: newLevel })}
-        currentIndex={gameState.currentIndex}
-        setCurrentIndex={(newIndex) => updateGameState({ currentIndex: newIndex })}
+        {...gameState}
+        setGameState={setGameState}
         />
         <TitleMenu
-          createGrid={createGrid}
-          size={gameState.size}
-          setSize={(newSize) => updateGameState({ size: newSize })}
-          game={gameState.game}
-          setGame={(newGame) => updateGameState({ game: newGame })}
-          gamerunning={gameState.gamerunning}
-          setGamerunning={(isRunning) => updateGameState({ gamerunning: isRunning })}
-          playGame={gameState.playGame}
-          setPlayGame={(isPlayGame) => updateGameState({ playGame: isPlayGame })}
-          createGame={gameState.createGame}
-          setCreateGame={(isCreateGame) => updateGameState({ createGame: isCreateGame })}
-          autoGame={gameState.autoGame}
-          setAutoGame={(isAutoGame) => updateGameState({ autoGame: isAutoGame })}
-          success={gameState.success}
-          setSuccess={(isSuccess) => updateGameState({ success: isSuccess })}
-          currentGroup={gameState.currentGroup}
-          setCurrentGroup={(newGroup) => updateGameState({ currentGroup: newGroup })}
-          currentLevel={gameState.currentLevel}
-          setCurrentLevel={(newLevel) => updateGameState({ currentLevel: newLevel })}
-          currentIndex={gameState.currentIndex}
-          setCurrentIndex={(newIndex) => updateGameState({ currentIndex: newIndex })}
+           createGrid={createGrid}
+           {...gameState}
+           setGameState={setGameState}
         />
       </div>
     </Fragment>
