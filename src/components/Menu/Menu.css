@@ -1,0 +1,72 @@
+.Menu {
+    display: flex;
+    text-align: center;
+    font-family: 'Times New Roman';
+    flex-direction: row;
+    justify-content: space-around; /* Updated to evenly distribute buttons */
+    align-items: center;
+    padding: 0px;
+    height: calc(var(--size) * 10);
+    width: calc(var(--size) * 30); /* Updated width to fill the container */
+    max-height: 500px;
+    max-width: 400px;
+    background-color: #919191;
+  }
+  
+  .buttonmenu {
+    background-color: #cbe924;
+    flex: 1;
+    border-radius: calc(var(--size) * 1.9);
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 750;
+    height: calc(var(--size) * 1.9); /* Adjusted button height for better appearance */
+    width: calc(var(--size) * 20); 
+    padding: calc(var(--size) * 0); /* Adjusted button padding for better appearance */
+    text-align: center;
+    max-height: 25px;
+    max-width: 200px;
+    min-height: 15px;
+    min-width: 50px;
+    font-size: clamp(10px,calc(var(--size) * 1.9), 25px);
+  }
+  
+  .sizemenu {
+    background-color: --silver;
+    border-radius: calc(var(--size) * 1.9);
+    border: none;
+    color: --silver;
+    cursor: pointer;
+    font-weight: 750;
+    height: calc(var(--size) * 2.7); /* Adjusted button height for better appearance */
+    width: calc(var(--size) * 20); 
+    padding: calc(var(--size) * 0); /* Adjusted button padding for better appearance */
+    text-align: center;
+    max-height: 25px;
+    max-width: 80px;
+    min-height: 15px;
+    min-width: 40px;
+    font-size: clamp(10px,calc(var(--size) * 2.7), 25px);
+  }
+  .tablerow {
+    display: flex;
+    height: calc(var(--size) * 5);
+    width: calc(var(--size) * 30);
+    padding: calc(var(--size) * 0);
+    max-height: 30px;
+    max-width: 200px;
+    min-height: 15px;
+    min-width: 50px;
+  }
+  
+  .tabledata {
+    display: flex;
+    height: calc(var(--size) * 3);
+    width: calc(var(--size) * 30);
+    padding: calc(var(--size) * 0);
+    max-height: 30px;
+    max-width: 200px;
+    min-height: 15px;
+    min-width: 50px;
+  }

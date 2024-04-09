@@ -1,0 +1,48 @@
+.Game {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    padding: calc(var(--size) * 0.4);
+    height: calc(var(--size) * 50 * 1.5);
+    width: calc(var(--size) * 40 * 1.5);
+    max-height: 400px;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Updated box-shadow for 3D effect */
+    background-color: #919191;
+    transition: all 0.3s ease; /* Added transition for smoother resizing */
+}
+
+.row {
+    display: flex;
+    flex: 1;
+    height: calc(var(--size) * 40 * 1.5);
+    width: calc(var(--size) * 40 * 1.5); /* Updated width to fill the container */
+    max-height: 70px;
+    max-width: 400px;
+    justify-content: space-between;
+    padding: calc(var(--size) * 0.4);
+}
+
+.won {
+    color: white;
+    font-size: calc(50px + 2 * var(--size));
+    letter-spacing: 2px;
+    margin-bottom: 0;
+    padding: 0 var(--size);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5); /* Updated text-shadow for better visibility */
+}
+
+.blinkdiv {
+    background-color: #4c374e;
+    animation: purplepink 0.4s infinite alternate; /* Updated animation for infinite loop */
+}
+
+.nonblinkdiv {
+    background-color: #4c374e;
+}
+
+@keyframes purplepink {
+    0% { background-color: #4c374e; }
+    100% { background-color: #df5ba8; }
+}
