@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 
 import "./Game.css";
 import Cell from "../Cell/Cell";
@@ -12,7 +12,7 @@ const Game = ({
     size,
     setSize,
     game,
-    setGame,
+    setGameState,
     gamerunning,
     setGamerunning,
     playGame,
@@ -30,8 +30,16 @@ const Game = ({
     currentLevel,
     setCurrentLevel,
     currentIndex,
-    setCurrentIndex}) => {
+    setCurrentIndex
+    }) => {
 
+  const [puzzles, setPuzzles] = useState(null);
+  useEffect(() => {
+    fetch("../puzzle/puzzle.js")
+      .then((res) => res.json())
+      .then((data) => setPuzzles(data))
+      .catch((err) => console.error(err));
+  }, []);
 
   //Select # of playable levels before ending game
   const maxPlayableLevels = 25;
@@ -39,7 +47,7 @@ const Game = ({
   // Set the Level by Address currentGroup addresses set i.e. 0-0 through 4-4 are 25 addresses for a set.
   // There are 25 levels in a set. currentLevel similarly has 0-0 through 4-4 as 25 addresses for each level.
   // e.g. Level 1 => ['0-0']['0-0'] and Level 25 => ['0-0']['4-4']. Level 26 enters a new set with the address: ['0-1']['0-0']
-  const currentPuzzleConfig = puzzles[currentGroup][currentLevel];
+  const currentPuzzleConfig = puzzles?puzzles[currentGroup][currentLevel];
 
   //Changes Level by Passing through Conversion Function to base10 value, increments, then returns to address value (effectively base5)
   const handleNextLevel = () => {
@@ -63,7 +71,7 @@ const Game = ({
           updatedGame[rowIndex][colIndex] = true;
         }
       });
-      setGame(updatedGame);
+      setGameState(updatedGame);
     }
   };
 
@@ -80,7 +88,7 @@ const Game = ({
       if (row > 0) copy[row - 1][col] = !copy[row - 1][col];
       if (col < size - 1) copy[row][col + 1] = !copy[row][col + 1];
       if (col > 0) copy[row][col - 1] = !copy[row][col - 1];
-      setGame(copy);
+      setGameState(copy);
     }
   };
   //Handles button press effect while creation Mode is set.
@@ -92,7 +100,7 @@ const Game = ({
     }
     let copy = [...game.map((r) => [...r])];
     copy[row][col] = !copy[row][col];
-    setGame(copy);
+    setGameState(copy);
   };
 
 //Handles the game assigning addresses for the level
@@ -115,9 +123,9 @@ const Game = ({
           updatedGame[rowIndex][colIndex] = true;
         }
       });
-      setGame(updatedGame);
+      setGameState(updatedGame);
     }
-  }, [size, createGrid, currentPuzzleConfig, setGame, currentGroup, currentLevel]);
+  }, [size, createGrid, currentPuzzleConfig, setGameState, currentGroup, currentLevel]);
 
   //End of Game Logic --> requires both game to be in progress (gamerunning) and all light to be out (creationMode should also be excluded)
   const gameEnds = () => {

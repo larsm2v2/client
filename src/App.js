@@ -52,8 +52,8 @@ const App = () => {
         />
         <TitleMenu
            createGrid={createGrid}
-           {...gameState}
-           setGameState={setGameState}
+        {...gameState}
+        setGameState={setGameState}
         />
       </div>
     </Fragment>
